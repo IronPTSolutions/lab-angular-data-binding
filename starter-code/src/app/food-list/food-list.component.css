@@ -1,0 +1,35 @@
+.food-creator input{
+    display: block;
+    margin-bottom: 5px;
+    min-width: 50px;
+}
+
+.finder {
+    margin-top: 20px;
+}
+
+
+.foods {
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
+}
+.food {
+    max-width: 350px;
+    margin-bottom: 15px; 
+}
+
+.food h4 {
+    margin: 0px;
+}
+
+.food img {
+    max-width: 100px;
+    width: 100%;
+    margin-right: 15px;
+}
+
+.food img, .food .data {
+    display: inline-block;
+    vertical-align: middle;
+}

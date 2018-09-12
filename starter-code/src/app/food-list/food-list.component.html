@@ -1,3 +1,37 @@
-<p>
-  food-list works!
-</p>
+<button (click)="toogleCreateForm()">Add Food</button>
+<div class="food-creator" *ngIf="showCreateForm">
+  <input type="text" [(ngModel)]="newFood.name" name="name" placeholder="Name" required>
+  <input type="number" [(ngModel)]="newFood.calories" name="calories" placeholder="Calories" required>
+  <input type="text" [(ngModel)]="newFood.image" name="image" placeholder="Image" required>
+  <input type="number" [(ngModel)]="newFood.quantity" name="quantity" placeholder="Quantity" required>
+  <button type="button" (click)="addFood()">Submit</button>
+</div>
+
+<div class="finder">
+  <label for="filter">Find food:</label>
+  <input type="text" [(ngModel)]="pattern">
+</div>
+
+<ul class="foods">
+  <li *ngFor="let food of foods | foodFilter:'name':pattern" class="food">
+    <img src="{{food.image}}" alt="">
+    <div class="data">
+      <h4>{{food.name}} <small>{{food.calories}}</small></h4>
+      <button type="button" (click)="addQuantity(food)">+</button><input type="number" [(ngModel)]="food.quantity">
+      <br>
+      <button type="button" (click)="addTodayFood(food, todayQuantity.value)">Add today</button>
+      <input type="number" #todayQuantity [max]="food.quantity" min="1" value="1">
+    </div>
+  </li>
+</ul>
+
+<ul class="foods">
+  <h4>Today's Food <small>({{ todayCalories }})</small></h4>
+  <li *ngFor="let food of todayFoods" class="food">
+    <img src="{{food.image}}" alt="">
+    <div class="data">
+      <h4>{{food.name}} <small>{{food.calories}}</small></h4>
+      <input type="number" [(ngModel)]="food.quantity" disabled>
+    </div>
+  </li>
+</ul>
